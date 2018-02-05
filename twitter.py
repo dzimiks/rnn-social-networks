@@ -1,10 +1,13 @@
 import tweepy
+import json
+
+keys = json.load(open("keys.json", "r"))
 
 # Twitter API credentials
-consumer_key = "#####"
-consumer_secret = "#####"
-access_key = "#####"
-access_secret = "#####"
+consumer_key    = keys["twitter"]["consumer_key"]
+consumer_secret = keys["twitter"]["consumer_secret"]
+access_key      = keys["twitter"]["access_key"]
+access_secret   = keys["twitter"]["access_secret"]
 
 def get_all_tweets(screen_name):
     # Twitter only allows access to a users most recent 3240 tweets with this method
@@ -37,6 +40,6 @@ def get_all_tweets(screen_name):
                 f.write("%s\n" % item)
 
 if __name__ == "__main__":
-    get_all_tweets("pivokosa")
-    # get_all_tweets("GordonRamsay")
+    # get_all_tweets("pivokosa")
+    get_all_tweets("GordonRamsay")
     # get_all_tweets("Neguj_mo_srbski")
