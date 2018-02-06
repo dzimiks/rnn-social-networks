@@ -1,3 +1,6 @@
+# Downloads the top 15 posts from a
+# subreddit and puts them into a text file
+
 import praw
 import json
 

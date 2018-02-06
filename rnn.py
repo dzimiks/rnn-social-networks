@@ -1,3 +1,5 @@
+# Trains the network based on the chosen file
+
 import tensorflow as tf
 import numpy as np
 

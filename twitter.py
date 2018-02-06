@@ -1,3 +1,6 @@
+# Script downloads latest 3250 tweets
+# from a user and puts them into a text file
+
 import tweepy
 import json
 
@@ -9,12 +12,12 @@ consumer_secret = keys["twitter"]["consumer_secret"]
 access_key      = keys["twitter"]["access_key"]
 access_secret   = keys["twitter"]["access_secret"]
 
-def get_all_tweets(screen_name):
-    # Twitter only allows access to a users most recent 3240 tweets with this method
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_key, access_secret)
-    api = tweepy.API(auth)
+# Twitter only allows access to a users most recent 3240 tweets with this method
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_key, access_secret)
+api = tweepy.API(auth)
 
+def get_all_tweets(screen_name):
     all_tweets = []
 
     # Request newest tweets (max 200)
@@ -41,5 +44,11 @@ def get_all_tweets(screen_name):
 
 if __name__ == "__main__":
     # get_all_tweets("pivokosa")
-    get_all_tweets("GordonRamsay")
+    # get_all_tweets("GordonRamsay")
     # get_all_tweets("Neguj_mo_srbski")
+    user = api.get_user("dzimiks")
+    print(user.screen_name)
+    print(user.followers_count)
+
+    for friend in user.friends():
+        print(friend.screen_name)
